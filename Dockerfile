@@ -37,10 +37,10 @@ ENV supervisor_conf /etc/supervisor/supervisord.conf
 # Place la conf des site nginx
 COPY default ${nginx_vhost}
 
-# Decomente est change la valeur de cgi.fix_pathinfo dans le fichier conf de php7 
+# Dé comente est change la valeur de cgi.fix_pathinfo dans le fichier $php_conf
 RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' ${php_conf}
 
-# Desactive le daemon nginx 
+# Desactive le daemon nginx en ajoutant une ligne à la fin de $nginx_conf
 RUN echo "\ndaemon off;" >> ${nginx_conf}
 
 # Insatll la conf de supervisor
